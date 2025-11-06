@@ -1,6 +1,9 @@
 ﻿import { NextRequest } from 'next/server';
 import { prisma } from '../../../../../lib/db';
 import { ensureCors, preflight } from '../../../../../lib/cors';
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function OPTIONS() { return preflight(); }
 
@@ -45,5 +48,6 @@ export async function POST(req: NextRequest) {
     return ensureCors(new Response(JSON.stringify({ error: e.message }), { status: 500 }));
   }
 }
+
 
 
